@@ -56,6 +56,8 @@ int main ()
 {
     //im guessing we choose 45 million because we know its greater than 9*10!, which is the total possibilities for SSN
     int rand;
+    ofstream out;
+    out.open("hashed_socials.txt");
     cout <<"Please enter in a number between 1 and 45 million"<<endl;
     cin >> rand;
     if (rand >0 && rand<45000000)
@@ -68,7 +70,7 @@ int main ()
         cin >> rand;
     }
     int *social_security_list = NULL;   //set up where we read info into
-    getFile ("everyb0dys_socials.txt", social_security_list);
+    getFile ("everybodys_socials.txt", social_security_list);
     int *hash_list = new int[65000];      //set up table to hash to
     for (int i=0; i<65000; i++)
     {
@@ -100,6 +102,10 @@ int main ()
         }
 
     }
-
+    for (int z=0;z<65000; z++)
+    {
+        out<< social_security_list[z]<<  "is stored at" << hash_list[z];
+    }
+    out.close();
 
 }
